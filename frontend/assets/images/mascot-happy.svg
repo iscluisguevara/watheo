@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Sombra base -->
+  <ellipse cx="100" cy="182" rx="48" ry="10" fill="#1B4332" fill-opacity="0.18"/>
+  <!-- Cuerpo de gota de agua -->
+  <path d="M100 32C100 32 45 92 45 132C45 162.376 69.6243 182 100 182C130.376 182 155 162.376 155 132C155 92 100 32 100 32Z" fill="url(#dropGrad)" stroke="#1B4332" stroke-width="5"/>
+  <!-- Brillo de la gota -->
+  <path d="M68 112C62 126 65 145 75 155" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-opacity="0.65"/>
+  <!-- Hoja izquierda -->
+  <path d="M100 34C88 14 60 12 52 26C44 40 72 48 100 34Z" fill="#52B788" stroke="#1B4332" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Hoja derecha -->
+  <path d="M100 34C114 10 144 12 148 28C152 44 122 48 100 34Z" fill="#74C69D" stroke="#1B4332" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Ojos felices -->
+  <circle cx="80" cy="122" r="7" fill="#1B4332"/>
+  <circle cx="78" cy="119" r="2.5" fill="#FFFFFF"/>
+  <circle cx="120" cy="122" r="7" fill="#1B4332"/>
+  <circle cx="118" cy="119" r="2.5" fill="#FFFFFF"/>
+  <!-- Mejillas sonrojadas -->
+  <ellipse cx="67" cy="132" rx="7" ry="4" fill="#F4A261" fill-opacity="0.7"/>
+  <ellipse cx="133" cy="132" rx="7" ry="4" fill="#F4A261" fill-opacity="0.7"/>
+  <!-- Sonrisa -->
+  <path d="M88 134C92 143 108 143 112 134" stroke="#1B4332" stroke-width="4.5" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="dropGrad" x1="100" y1="32" x2="100" y2="182" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#48CAE4"/>
+      <stop offset="100%" stop-color="#0096C7"/>
+    </linearGradient>
+  </defs>
+</svg>

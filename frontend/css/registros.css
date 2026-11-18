@@ -1,0 +1,278 @@
+/* ==========================================================================
+   WATHEO - Estilos de la Tabla de Registros y Bitácora (/css/registros.css)
+   ========================================================================== */
+
+.records-header-banner {
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-primary) 100%);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 1.85rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.75rem;
+  border: 3px solid var(--green-fresh);
+}
+
+.records-header-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.records-header-desc {
+  color: var(--green-soft);
+  font-size: 0.98rem;
+  max-width: 680px;
+}
+
+.records-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* KPI Resumen de Registros */
+.records-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.records-kpi-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--earth-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.records-kpi-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.kpi-icon-total {
+  background-color: var(--green-soft);
+  color: var(--green-deep);
+}
+
+.kpi-icon-optimal {
+  background-color: var(--health-optimal-bg);
+  color: var(--health-optimal);
+}
+
+.kpi-icon-low {
+  background-color: var(--health-warning-bg);
+  color: var(--health-warning);
+}
+
+.kpi-icon-high {
+  background-color: var(--health-critical-bg);
+  color: var(--health-critical);
+}
+
+.records-kpi-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+.records-kpi-value {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.15;
+}
+
+/* Barra de Filtros */
+.records-toolbar {
+  background-color: #FFFFFF;
+  border: 2px solid var(--earth-border);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.records-filters-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.filter-field label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.filter-select,
+.filter-input {
+  padding: 0.6rem 0.95rem;
+  border: 2px solid var(--earth-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: var(--earth-cream);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  border-color: var(--green-primary);
+  background-color: #FFFFFF;
+}
+
+/* Contenedor de Tabla de Registros */
+.records-table-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--earth-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.records-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.records-table thead {
+  background-color: var(--green-deep);
+  color: #FFFFFF;
+}
+
+.records-table th {
+  padding: 0.95rem 1.15rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.records-table tbody tr {
+  border-bottom: 1px solid var(--earth-border);
+  transition: background-color var(--transition-fast);
+}
+
+.records-table tbody tr:hover {
+  background-color: var(--green-mint-bg);
+}
+
+.records-table td {
+  padding: 0.9rem 1.15rem;
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.cell-mono {
+  font-weight: 700;
+  color: var(--green-deep);
+  white-space: nowrap;
+}
+
+.cell-metric {
+  font-weight: 800;
+  font-size: 0.98rem;
+  white-space: nowrap;
+}
+
+.cell-notes {
+  color: var(--text-secondary);
+  max-width: 320px;
+  font-size: 0.86rem;
+}
+
+.records-empty-state {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.records-table-footer {
+  padding: 0.95rem 1.35rem;
+  background-color: var(--earth-cream);
+  border-top: 2px solid var(--earth-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .records-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .records-header-banner {
+    padding: 1.35rem 1.1rem;
+  }
+
+  .records-header-title {
+    font-size: 1.45rem;
+  }
+
+  .records-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .records-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .records-filters-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

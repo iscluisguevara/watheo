@@ -1,0 +1,479 @@
+/* ==========================================================================
+   WATHEO - Estilos del Dashboard de Sensores (/dashboard/dashboard.css)
+   ========================================================================== */
+
+/* Barra de Simulación de Escenarios (Ideal para demostración universitaria) */
+.simulator-toolbar {
+  background-color: var(--earth-dark);
+  color: var(--earth-cream);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--earth-terracotta);
+}
+
+.simulator-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.simulator-label i {
+  font-size: 1.35rem;
+  color: var(--earth-sand);
+}
+
+.simulator-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--earth-cream);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.sim-btn:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.sim-btn.active {
+  background-color: var(--earth-sand);
+  color: var(--earth-dark);
+  border-color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Panel Destacado: Última Lectura + Estado del Relé + Override Manual
+   ========================================================================== */
+.featured-control-panel {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--green-mint-bg) 100%);
+  border: 3px solid var(--green-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 0.9fr;
+  gap: 1.5rem;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.featured-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.featured-icon-lg {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background-color: var(--green-deep);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.featured-icon-relay-on {
+  background-color: var(--water-primary);
+  box-shadow: 0 0 0 6px rgba(0, 119, 182, 0.18);
+}
+
+.featured-icon-relay-off {
+  background-color: var(--earth-clay);
+}
+
+.featured-overline {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.featured-main-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+}
+
+.featured-subtext {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Indicador de Relé Encendido / Apagado */
+.relay-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.relay-pill-on {
+  background-color: var(--water-soft);
+  color: var(--water-deep);
+  border: 2px solid var(--water-primary);
+}
+
+.relay-pill-off {
+  background-color: #F3EFE6;
+  color: var(--earth-dark);
+  border: 2px solid var(--earth-terracotta);
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* Bloque de Botón de Emergencia / Riego Manual */
+.override-action-box {
+  background-color: #FFFFFF;
+  border: 2px dashed var(--earth-terracotta);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  text-align: center;
+}
+
+.override-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--earth-clay);
+  letter-spacing: 0.04em;
+}
+
+.btn-override-large {
+  width: 100%;
+  padding: 0.95rem 1.2rem;
+  font-size: 1.02rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Tarjetas de los 4 Sensores + Mascota en el Dashboard
+   ========================================================================== */
+.dashboard-top-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sensor-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.sensor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.sensor-icon-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+}
+
+.sensor-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.sensor-reading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.1;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.sensor-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Panel de Mascota en el Dashboard */
+.dashboard-mascot-widget {
+  background-color: #FFFFFF;
+  border: 3px solid var(--earth-sand);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-mascot-figure {
+  width: 100%;
+  max-width: 135px;
+  height: auto;
+  margin: 0.5rem auto;
+}
+
+.dashboard-mascot-heading {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  margin-top: 0.4rem;
+}
+
+.dashboard-mascot-bubble {
+  background-color: var(--earth-cream);
+  border: 1px solid var(--earth-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0.75rem 0 1rem;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Sección de Gráficas Históricas (Chart.js)
+   ========================================================================== */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.chart-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--earth-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.chart-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chart-title i {
+  font-size: 1.4rem;
+  color: var(--green-primary);
+}
+
+.chart-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.chart-canvas-wrapper {
+  position: relative;
+  height: 290px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Modal de Confirmación de Riego Manual (Sin estilos en línea)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(27, 67, 50, 0.65);
+  backdrop-filter: blur(3px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-dialog {
+  background-color: #FFFFFF;
+  border: 3px solid var(--earth-terracotta);
+  border-radius: var(--radius-lg);
+  width: 92vw;
+  max-width: 480px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.modal-icon-badge {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background-color: var(--water-soft);
+  color: var(--water-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  margin: 0 auto 1rem;
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  margin-bottom: 0.65rem;
+}
+
+.modal-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+}
+
+.modal-actions .btn {
+  flex: 1;
+}
+
+@media (max-width: 1100px) {
+  .featured-control-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-top-grid,
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .simulator-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.85rem 1rem;
+  }
+
+  .simulator-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sim-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .featured-control-panel {
+    grid-template-columns: 1fr;
+    padding: 1.15rem;
+    gap: 1.15rem;
+  }
+
+  .featured-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .featured-main-value {
+    font-size: 1.1rem;
+  }
+
+  .sensor-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sensor-reading {
+    font-size: 1.75rem;
+  }
+
+  .sensor-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .chart-card {
+    padding: 1rem;
+  }
+
+  .chart-title {
+    font-size: 0.98rem;
+  }
+
+  .chart-canvas-wrapper {
+    height: 230px;
+  }
+
+  .modal-dialog {
+    padding: 1.35rem 1rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watheo | Asistente Virtual y Mascota Agrícola</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/asistente.css">
+</head>
+<body>
+  <!-- Barra de Navegación Superior -->
+  <header class="top-navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="brand-link">
+        <img src="../assets/icons/watheo-logo.svg" alt="Logo Watheo" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title">WATHEO</span>
+          <span class="brand-subtitle">Monitoreo Agrícola &amp; Riego IoT</span>
+        </div>
+      </a>
+      <nav aria-label="Navegación Principal">
+        <ul class="nav-links">
+          <li>
+            <a href="../index.html" class="nav-item-link">
+              <i class="ph ph-plant"></i>
+              <span>Resumen del Campo</span>
+            </a>
+          </li>
+          <li>
+            <a href="./dashboard.html" class="nav-item-link">
+              <i class="ph ph-chart-line-up"></i>
+              <span>Dashboard y Riego</span>
+            </a>
+          </li>
+          <li>
+            <a href="./registros.html" class="nav-item-link">
+              <i class="ph ph-table"></i>
+              <span>Tabla de Registros</span>
+            </a>
+          </li>
+          <li>
+            <a href="./asistente.html" class="nav-item-link active">
+              <i class="ph ph-chat-circle-dots"></i>
+              <span>Asistente Watheo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="assistant-layout">
+      <!-- Columna Izquierda: Estado Visual de la Mascota y Lecturas Rápidas -->
+      <aside class="mascot-sidebar" aria-label="Perfil y estado de la mascota Watheo">
+        <div class="mascot-stage">
+          <img id="assistant-mascot-img" src="../assets/images/mascot-happy.svg" alt="Mascota Watheo" class="mascot-stage-img">
+        </div>
+        <span id="assistant-mascot-badge" class="health-badge badge-optimal">Óptimo</span>
+        <h1 class="mascot-name">Watheo Guardián</h1>
+        <p class="mascot-role">Tu compañero virtual de riego y salud del suelo</p>
+
+        <div class="mini-telemetry-list">
+          <div class="mini-telemetry-item">
+            <span class="mini-telemetry-label">
+              <i class="ph-fill ph-drop-half-bottom"></i> Humedad Suelo
+            </span>
+            <span id="assist-val-soil" class="mini-telemetry-val">--%</span>
+          </div>
+          <div class="mini-telemetry-item">
+            <span class="mini-telemetry-label">
+              <i class="ph-fill ph-thermometer-hot"></i> Temp. Ambiente
+            </span>
+            <span id="assist-val-temp" class="mini-telemetry-val">--°C</span>
+          </div>
+          <div class="mini-telemetry-item">
+            <span class="mini-telemetry-label">
+              <i class="ph-fill ph-wind"></i> Humedad Aire
+            </span>
+            <span id="assist-val-air" class="mini-telemetry-val">--%</span>
+          </div>
+          <div class="mini-telemetry-item">
+            <span class="mini-telemetry-label">
+              <i class="ph-fill ph-power"></i> Control físico del riego
+            </span>
+            <span id="assist-val-relay" class="mini-telemetry-val">--</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Columna Derecha: Interfaz Tipo Chat Anclada -->
+      <section class="chat-panel" aria-label="Conversación con el asistente Watheo">
+        <header class="chat-header">
+          <div class="chat-header-info">
+            <img id="chat-header-avatar" src="../assets/images/mascot-happy.svg" alt="Avatar Watheo" class="chat-header-avatar">
+            <div>
+              <h2 class="chat-header-title">Chat Agrícola con Watheo</h2>
+              <p id="chat-header-subtitle" class="chat-header-subtitle">Esperando lecturas del ESP32...</p>
+            </div>
+          </div>
+          <button id="btn-clear-chat" type="button" class="btn btn-outline">
+            <i class="ph ph-arrows-counter-clockwise"></i>
+            <span>Reiniciar Chat</span>
+          </button>
+        </header>
+
+        <div id="chat-messages" class="chat-messages-container" aria-live="polite"></div>
+
+        <div class="preset-questions-bar">
+          <p class="preset-bar-label">
+            <i class="ph-fill ph-sparkle"></i>
+            <span>Preguntas rápidas recomendadas (toca una para consultar):</span>
+          </p>
+          <div id="preset-questions-list" class="preset-chips-list"></div>
+        </div>
+
+        <form id="chat-form" class="chat-input-form">
+          <input
+            id="chat-input"
+            type="text"
+            class="chat-text-input"
+            placeholder="Escribe tu pregunta sobre humedad, temperatura, clima o riego..."
+            autocomplete="off"
+            required
+          >
+          <button type="submit" class="btn btn-primary">
+            <i class="ph-fill ph-paper-plane-right"></i>
+            <span>Enviar</span>
+          </button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span><strong>Watheo IoT</strong> — Asistente Virtual Inteligente para el Agricultor</span>
+      <span class="footer-badge">Respuestas basadas en lecturas reales</span>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/asistente.js"></script>
+</body>
+</html>

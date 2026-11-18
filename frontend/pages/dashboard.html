@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watheo | Dashboard de Sensores y Control de Riego</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+  <!-- Barra de Navegación Superior -->
+  <header class="top-navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="brand-link">
+        <img src="../assets/icons/watheo-logo.svg" alt="Logo Watheo" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title">WATHEO</span>
+          <span class="brand-subtitle">Monitoreo Agrícola &amp; Riego IoT</span>
+        </div>
+      </a>
+      <nav aria-label="Navegación Principal">
+        <ul class="nav-links">
+          <li>
+            <a href="../index.html" class="nav-item-link">
+              <i class="ph ph-plant"></i>
+              <span>Resumen del Campo</span>
+            </a>
+          </li>
+          <li>
+            <a href="./dashboard.html" class="nav-item-link active">
+              <i class="ph ph-chart-line-up"></i>
+              <span>Dashboard y Riego</span>
+            </a>
+          </li>
+          <li>
+            <a href="./registros.html" class="nav-item-link">
+              <i class="ph ph-table"></i>
+              <span>Tabla de Registros</span>
+            </a>
+          </li>
+          <li>
+            <a href="./asistente.html" class="nav-item-link">
+              <i class="ph ph-chat-circle-dots"></i>
+              <span>Asistente Watheo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Panel Destacado: Fecha/Hora de Última Lectura, Estado del Relé y Botón de Emergencia -->
+    <section class="featured-control-panel" aria-label="Estado del sistema y control de riego">
+      <div class="featured-block">
+        <div class="featured-icon-lg">
+          <i class="ph-fill ph-calendar-check"></i>
+        </div>
+        <div>
+          <p class="featured-overline">Fecha y Hora de la Última Lectura</p>
+          <p id="dash-last-reading" class="featured-main-value">--</p>
+          <p id="dash-plot-info" class="featured-subtext">Sincronizado con nodo agrícola</p>
+        </div>
+      </div>
+
+      <div class="featured-block">
+        <div id="dash-relay-icon-box" class="featured-icon-lg featured-icon-relay-off">
+          <i id="dash-relay-icon" class="ph-fill ph-power"></i>
+        </div>
+        <div>
+          <p class="featured-overline">Estado del control de riego</p>
+          <div id="dash-relay-pill" class="relay-status-pill relay-pill-off">
+            <span class="pulse-dot"></span>
+            <span id="dash-relay-state-text">SIN DATOS</span>
+          </div>
+          <p id="dash-relay-detail" class="featured-subtext">--</p>
+        </div>
+      </div>
+
+      <div class="override-action-box">
+        <span class="override-title">
+          <i class="ph-fill ph-shield-warning"></i> Control físico: pendiente de integrar
+        </span>
+        <button id="btn-manual-override" type="button" disabled class="btn btn-water btn-override-large">
+          <i class="ph-fill ph-shower"></i>
+          <span id="btn-manual-override-text">Control no disponible</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Cuadrícula Superior: 4 Tarjetas de Sensores + Estado Visual de la Mascota -->
+    <section class="dashboard-top-grid" aria-label="Tarjetas de sensores y mascota">
+      <div class="sensor-cards-grid">
+        <article id="dash-card-soil" class="card-base">
+          <div class="sensor-card-header">
+            <div class="sensor-icon-circle icon-soil">
+              <i class="ph-fill ph-drop-half-bottom"></i>
+            </div>
+            <span id="dash-badge-soil" class="health-badge badge-optimal">Óptimo</span>
+          </div>
+          <h2 class="sensor-title">Humedad del Suelo</h2>
+          <p id="dash-val-soil" class="sensor-reading">--%</p>
+          <div class="sensor-meta">
+            <span>Umbral del cultivo: <span id="dash-soil-range">Sin datos</span></span>
+            <span>Configuración de SQL Server</span>
+          </div>
+        </article>
+
+        <article id="dash-card-temp" class="card-base">
+          <div class="sensor-card-header">
+            <div class="sensor-icon-circle icon-temp">
+              <i class="ph-fill ph-thermometer-hot"></i>
+            </div>
+            <span id="dash-badge-temp" class="health-badge badge-optimal">Óptimo</span>
+          </div>
+          <h2 class="sensor-title">Temperatura Ambiente</h2>
+          <p id="dash-val-temp" class="sensor-reading">--°C</p>
+          <div class="sensor-meta">
+            <span>Umbral óptimo: 18°C - 28°C</span>
+            <span>Crítico: &gt;32°C</span>
+          </div>
+        </article>
+
+        <article id="dash-card-air" class="card-base">
+          <div class="sensor-card-header">
+            <div class="sensor-icon-circle icon-air">
+              <i class="ph-fill ph-wind"></i>
+            </div>
+            <span id="dash-badge-air" class="health-badge badge-optimal">Óptimo</span>
+          </div>
+          <h2 class="sensor-title">Humedad del Aire</h2>
+          <p id="dash-val-air" class="sensor-reading">--%</p>
+          <div class="sensor-meta">
+            <span>Umbral óptimo: 50% - 75%</span>
+            <span>Crítico: &lt;35%</span>
+          </div>
+        </article>
+
+        <article class="card-base">
+          <div class="sensor-card-header">
+            <div class="sensor-icon-circle icon-weather">
+              <i id="dash-weather-icon" class="ph-fill ph-cloud-sun"></i>
+            </div>
+            <span class="health-badge badge-optimal">Meteorología</span>
+          </div>
+          <h2 class="sensor-title">Clima Actual</h2>
+          <p id="dash-val-weather" class="sensor-reading">--</p>
+          <div class="sensor-meta">
+            <span id="dash-weather-rain">Pronóstico no conectado</span>
+            <span id="dash-weather-uv">UV: No disponible</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Widget Visual de la Mascota en el Dashboard -->
+      <aside class="dashboard-mascot-widget" aria-label="Mascota indicadora del estado del cultivo">
+        <span id="dash-mascot-badge" class="health-badge badge-optimal">Estado de Watheo</span>
+        <img id="dash-mascot-img" src="../assets/images/mascot-happy.svg" alt="Estado de la mascota Watheo" class="dashboard-mascot-figure">
+        <h3 id="dash-mascot-title" class="dashboard-mascot-heading">Cultivo Saludable</h3>
+        <p id="dash-mascot-speech" class="dashboard-mascot-bubble">
+          Cargando interpretación agronómica...
+        </p>
+        <a href="./asistente.html" class="btn btn-outline">
+          <i class="ph-fill ph-chat-dots"></i>
+          <span>Abrir Chat de Watheo</span>
+        </a>
+      </aside>
+    </section>
+
+    <!-- Gráficas Históricas con Chart.js -->
+    <section class="charts-grid" aria-label="Gráficas históricas de las últimas 24 horas">
+      <article class="chart-card">
+        <div class="chart-header">
+          <div>
+            <h3 class="chart-title">
+              <i class="ph-fill ph-drop-half"></i>
+              <span>Histórico 24h: Humedad del Suelo vs. Humedad del Aire (%)</span>
+            </h3>
+            <p class="chart-subtitle">Monitoreo de retención hídrica en raíz y humedad relativa</p>
+          </div>
+        </div>
+        <div class="chart-canvas-wrapper">
+          <canvas id="moistureHistoryChart" aria-label="Gráfica de humedad del suelo y aire"></canvas>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-header">
+          <div>
+            <h3 class="chart-title">
+              <i class="ph-fill ph-thermometer"></i>
+              <span>Histórico 24h: Temperatura Ambiente (°C)</span>
+            </h3>
+            <p class="chart-subtitle">Curva térmica diaria en la parcela agrícola</p>
+          </div>
+        </div>
+        <div class="chart-canvas-wrapper">
+          <canvas id="temperatureHistoryChart" aria-label="Gráfica de temperatura ambiente"></canvas>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Botón Flotante de la Mascota -->
+  <a href="./asistente.html" class="floating-mascot-btn" aria-label="Abrir asistente virtual Watheo">
+    <img id="fab-mascot-img" src="../assets/images/mascot-happy.svg" alt="Watheo" class="floating-mascot-avatar">
+    <div class="floating-mascot-label">
+      <span class="floating-mascot-title">Asistente Watheo</span>
+      <span id="fab-mascot-status" class="floating-mascot-status">Consultar sensores</span>
+    </div>
+  </a>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span><strong>Watheo IoT</strong> — Dashboard de Telemetría Agrícola</span>
+      <span class="footer-badge">Chart.js + API REST Desacoplada</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

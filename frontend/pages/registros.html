@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watheo | Tabla de Registros y Bitácora de Base de Datos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/registros.css">
+</head>
+<body>
+  <!-- Barra de Navegación Superior -->
+  <header class="top-navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="brand-link">
+        <img src="../assets/icons/watheo-logo.svg" alt="Logo Watheo" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title">WATHEO</span>
+          <span class="brand-subtitle">Monitoreo Agrícola &amp; Riego IoT</span>
+        </div>
+      </a>
+      <nav aria-label="Navegación Principal">
+        <ul class="nav-links">
+          <li>
+            <a href="../index.html" class="nav-item-link">
+              <i class="ph ph-plant"></i>
+              <span>Resumen del Campo</span>
+            </a>
+          </li>
+          <li>
+            <a href="./dashboard.html" class="nav-item-link">
+              <i class="ph ph-chart-line-up"></i>
+              <span>Dashboard y Riego</span>
+            </a>
+          </li>
+          <li>
+            <a href="./registros.html" class="nav-item-link active">
+              <i class="ph ph-table"></i>
+              <span>Tabla de Registros</span>
+            </a>
+          </li>
+          <li>
+            <a href="./asistente.html" class="nav-item-link">
+              <i class="ph ph-chat-circle-dots"></i>
+              <span>Asistente Watheo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Encabezado de la Bitácora -->
+    <section class="records-header-banner" aria-labelledby="records-title">
+      <div>
+        <h1 id="records-title" class="records-header-title">
+          Bitácora y Tabla de Registros (SQL Server)
+        </h1>
+        <p class="records-header-desc">
+          Auditoría en tiempo real de todas las lecturas enviadas por los sensores (`dbo.registros`), incluyendo valor ADC, evaluación de umbrales y diagnóstico agronómico.
+        </p>
+      </div>
+      <div class="records-header-actions">
+        <button id="btn-refresh-records" type="button" class="btn btn-outline">
+          <i class="ph-fill ph-arrows-clockwise"></i>
+          <span>Actualizar Ahora</span>
+        </button>
+        <button id="btn-export-csv" type="button" class="btn btn-water">
+          <i class="ph-fill ph-download-simple"></i>
+          <span>Exportar CSV</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Indicadores Resumen de los Registros Consultados -->
+    <section class="records-kpi-grid" aria-label="Resumen estadístico de registros">
+      <article class="records-kpi-card">
+        <div class="records-kpi-icon kpi-icon-total">
+          <i class="ph-fill ph-database"></i>
+        </div>
+        <div>
+          <p class="records-kpi-label">Registros Listados</p>
+          <p id="kpi-total-records" class="records-kpi-value">0</p>
+        </div>
+      </article>
+
+      <article class="records-kpi-card">
+        <div class="records-kpi-icon kpi-icon-optimal">
+          <i class="ph-fill ph-check-circle"></i>
+        </div>
+        <div>
+          <p class="records-kpi-label">En Rango Óptimo</p>
+          <p id="kpi-optimal-records" class="records-kpi-value">0</p>
+        </div>
+      </article>
+
+      <article class="records-kpi-card">
+        <div class="records-kpi-icon kpi-icon-low">
+          <i class="ph-fill ph-warning"></i>
+        </div>
+        <div>
+          <p class="records-kpi-label">Alerta Humedad Baja</p>
+          <p id="kpi-low-records" class="records-kpi-value">0</p>
+        </div>
+      </article>
+
+      <article class="records-kpi-card">
+        <div class="records-kpi-icon kpi-icon-high">
+          <i class="ph-fill ph-warning-octagon"></i>
+        </div>
+        <div>
+          <p class="records-kpi-label">Alerta Exceso Humedad</p>
+          <p id="kpi-high-records" class="records-kpi-value">0</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Barra de Filtros -->
+    <section class="records-toolbar" aria-label="Filtros de la tabla de registros">
+      <div class="records-filters-group">
+        <div class="filter-field">
+          <label for="filter-device">Dispositivo Sensor</label>
+          <select id="filter-device" class="filter-select">
+            <option value="">Todos los dispositivos</option>
+            <option value="WATHEO-001">WATHEO-001</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="filter-alert">Estado de Humedad / Alerta</label>
+          <select id="filter-alert" class="filter-select">
+            <option value="TODOS">Todos los estados</option>
+            <option value="OPTIMO">Dentro del rango (Óptimo)</option>
+            <option value="CRITICO_BAJO">Humedad baja (Requiere riego)</option>
+            <option value="CRITICO_ALTO">Exceso de humedad</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="filter-limit">Cantidad de Registros</label>
+          <select id="filter-limit" class="filter-select">
+            <option value="25">Últimos 25 registros</option>
+            <option value="50" selected>Últimos 50 registros</option>
+            <option value="100">Últimos 100 registros</option>
+            <option value="200">Últimos 200 registros</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla de Registros -->
+    <section class="records-table-card" aria-label="Listado detallado de registros">
+      <div class="records-table-wrapper">
+        <table class="records-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha y Hora</th>
+              <th>Nodo Sensor</th>
+              <th>Cultivo / Parcela</th>
+              <th>Humedad Suelo</th>
+              <th>Temp. Aire</th>
+              <th>Humedad Aire</th>
+              <th>Estado y Diagnóstico</th>
+            </tr>
+          </thead>
+          <tbody id="records-tbody">
+            <tr>
+              <td colspan="8" class="records-empty-state">
+                Consultando tabla de registros en SQL Server...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="records-table-footer">
+        <span id="records-footer-count">Cargando...</span>
+        <span id="records-footer-source">Fuente SQL Server: dbo.registros</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botón Flotante de la Mascota -->
+  <a href="./asistente.html" class="floating-mascot-btn" aria-label="Abrir asistente virtual Watheo">
+    <img id="fab-mascot-img" src="../assets/images/mascot-happy.svg" alt="Watheo" class="floating-mascot-avatar">
+    <div class="floating-mascot-label">
+      <span class="floating-mascot-title">Asistente Watheo</span>
+      <span id="fab-mascot-status" class="floating-mascot-status">Consultar sensores</span>
+    </div>
+  </a>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span><strong>Watheo IoT</strong> — Bitácora de Telemetría y Tabla de Registros</span>
+      <span class="footer-badge">SQL Server · dbo.registros</span>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/registros.js"></script>
+</body>
+</html>

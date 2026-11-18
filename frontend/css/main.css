@@ -1,0 +1,501 @@
+/* ==========================================================================
+   WATHEO - Sistema de Diseño Global (/shared/main.css)
+   Paleta de Colores Terrosos, Verdes Agrícolas y Azules Agua
+   ========================================================================== */
+
+:root {
+  /* Verdes Agrícolas */
+  --green-deep: #1B4332;
+  --green-primary: #2D6A4F;
+  --green-mid: #40916C;
+  --green-fresh: #52B788;
+  --green-soft: #D8F3DC;
+  --green-mint-bg: #EEF7F0;
+
+  /* Azules Agua / Riego */
+  --water-deep: #023E8A;
+  --water-primary: #0077B6;
+  --water-mid: #0096C7;
+  --water-bright: #00B4D8;
+  --water-soft: #CAF0F8;
+
+  /* Tonos Tierra / Suelo */
+  --earth-dark: #4A3423;
+  --earth-clay: #7F4F24;
+  --earth-terracotta: #B07D4F;
+  --earth-sand: #DDA15E;
+  --earth-cream: #F6F3EB;
+  --earth-card: #FFFFFF;
+  --earth-border: #E2DCCB;
+
+  /* Semáforo de Salud del Cultivo (Umbrales) */
+  --health-optimal: #2D6A4F;
+  --health-optimal-bg: #D8F3DC;
+  --health-optimal-border: #52B788;
+
+  --health-warning: #B45309;
+  --health-warning-bg: #FEF3C7;
+  --health-warning-border: #F59E0B;
+
+  --health-critical: #B91C1C;
+  --health-critical-bg: #FEE2E2;
+  --health-critical-border: #EF4444;
+
+  /* Tipografía y Texto */
+  --text-main: #1C2921;
+  --text-secondary: #4A5D50;
+  --text-muted: #6E8074;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Sombras y Bordes */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 2px 8px rgba(27, 67, 50, 0.06);
+  --shadow-md: 0 8px 24px rgba(27, 67, 50, 0.09);
+  --shadow-lg: 0 16px 36px rgba(27, 67, 50, 0.14);
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset Global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--earth-cream);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Barra de Navegación Superior (Accesible y de Alto Contraste para Campo)
+   ========================================================================== */
+.top-navbar {
+  background: var(--green-deep);
+  color: #FFFFFF;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+  border-bottom: 3px solid var(--green-fresh);
+}
+
+.navbar-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  color: var(--green-soft);
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-item-link {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.96rem;
+  color: var(--green-soft);
+  transition: all var(--transition-fast);
+}
+
+.nav-item-link i {
+  font-size: 1.35rem;
+}
+
+.nav-item-link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.nav-item-link.active {
+  background-color: var(--green-fresh);
+  color: var(--green-deep);
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(82, 183, 136, 0.35);
+}
+
+/* ==========================================================================
+   Layout Principal y Contenedores
+   ========================================================================== */
+.main-container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+  flex: 1;
+}
+
+/* ==========================================================================
+   Tarjetas y Badges de Salud del Cultivo (Verde / Amarillo / Rojo)
+   ========================================================================== */
+.card-base {
+  background-color: var(--earth-card);
+  border: 2px solid var(--earth-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.card-base:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Estados semánticos de las tarjetas según umbral */
+.card-health-optimal {
+  border-color: var(--health-optimal-border);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4FBF6 100%);
+}
+
+.card-health-warning {
+  border-color: var(--health-warning-border);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFBEB 100%);
+}
+
+.card-health-critical {
+  border-color: var(--health-critical-border);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FEF2F2 100%);
+}
+
+.health-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.health-badge i {
+  font-size: 1.05rem;
+}
+
+.badge-optimal {
+  background-color: var(--health-optimal-bg);
+  color: var(--health-optimal);
+  border: 1px solid var(--health-optimal-border);
+}
+
+.badge-warning {
+  background-color: var(--health-warning-bg);
+  color: var(--health-warning);
+  border: 1px solid var(--health-warning-border);
+}
+
+.badge-critical {
+  background-color: var(--health-critical-bg);
+  color: var(--health-critical);
+  border: 1px solid var(--health-critical-border);
+}
+
+/* ==========================================================================
+   Botones Reutilizables (Grandes y táctiles para uso en campo)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.btn i {
+  font-size: 1.35rem;
+}
+
+.btn-primary {
+  background-color: var(--green-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--green-deep);
+  transform: translateY(-1px);
+}
+
+.btn-water {
+  background-color: var(--water-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 119, 182, 0.3);
+}
+
+.btn-water:hover {
+  background-color: var(--water-deep);
+  transform: translateY(-1px);
+}
+
+.btn-earth {
+  background-color: var(--earth-clay);
+  color: #FFFFFF;
+}
+
+.btn-earth:hover {
+  background-color: var(--earth-dark);
+}
+
+.btn-outline {
+  background-color: #FFFFFF;
+  color: var(--green-deep);
+  border: 2px solid var(--green-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--green-soft);
+}
+
+.btn-danger {
+  background-color: var(--health-critical);
+  color: #FFFFFF;
+}
+
+.btn-danger:hover {
+  background-color: #991B1B;
+}
+
+/* ==========================================================================
+   Botón Flotante de Acceso Rápido a la Mascota (FAB)
+   ========================================================================== */
+.floating-mascot-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--green-deep);
+  color: #FFFFFF;
+  padding: 0.65rem 1.15rem 0.65rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 3px solid var(--green-fresh);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.floating-mascot-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 38px rgba(27, 67, 50, 0.28);
+}
+
+.floating-mascot-avatar {
+  width: 44px;
+  height: 44px;
+  background-color: var(--earth-cream);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.floating-mascot-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.floating-mascot-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.floating-mascot-status {
+  font-size: 0.75rem;
+  color: var(--green-soft);
+}
+
+/* ==========================================================================
+   Pie de Página
+   ========================================================================== */
+.site-footer {
+  background-color: var(--earth-dark);
+  color: var(--earth-cream);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 4px solid var(--earth-terracotta);
+}
+
+.footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-badge {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   Utilidades de Visibilidad (sin estilos inline)
+   ========================================================================== */
+.is-hidden {
+  display: none !important;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.72rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.4rem;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-item-link {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .main-container {
+    padding: 1rem 0.85rem 5.5rem;
+  }
+
+  .card-base {
+    padding: 1.15rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.65rem;
+  }
+
+  .floating-mascot-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.85rem 0.5rem 0.55rem;
+  }
+
+  .floating-mascot-label {
+    display: none;
+  }
+}
+
+/* Estado visible de la conexión con el backend real */
+.watheo-live-indicator{position:sticky;top:0;z-index:9999;padding:10px 18px;text-align:center;font-size:13px;font-weight:700;line-height:1.45;border-bottom:1px solid #acc9b9;}
+.watheo-connection-ok{background:#e8f5ec;color:#22583b;}
+.watheo-connection-error{background:#fff0e3;color:#823e20;}
+button:disabled{opacity:.5!important;cursor:not-allowed!important;}
+
+.simulator-toolbar, .mascot-scenario-box {display:none!important;}

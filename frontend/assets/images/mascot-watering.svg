@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Sombra base -->
+  <ellipse cx="100" cy="182" rx="52" ry="10" fill="#1B4332" fill-opacity="0.2"/>
+  <!-- Cuerpo de gota radiante -->
+  <path d="M95 34C95 34 42 92 42 132C42 161.823 65.7289 182 95 182C124.271 182 148 161.823 148 132C148 92 95 34 95 34Z" fill="url(#waterGrad)" stroke="#1B4332" stroke-width="5"/>
+  <!-- Hojas vibrantes erguidas -->
+  <path d="M95 34C82 10 54 10 48 24C42 38 70 46 95 34Z" fill="#40916C" stroke="#1B4332" stroke-width="4"/>
+  <path d="M95 34C108 8 138 10 142 26C146 42 118 46 95 34Z" fill="#52B788" stroke="#1B4332" stroke-width="4"/>
+  <!-- Ojos alegres cerrados (arcos felices) -->
+  <path d="M70 122C73 114 83 114 86 122" stroke="#1B4332" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M106 122C109 114 119 114 122 122" stroke="#1B4332" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Sonrisa amplia -->
+  <path d="M82 134C87 146 105 146 110 134Z" fill="#1B4332"/>
+  <!-- Regadera en mano derecha -->
+  <g transform="translate(122, 95) rotate(-18)">
+    <rect x="10" y="18" width="34" height="28" rx="6" fill="#E9C46A" stroke="#1B4332" stroke-width="3.5"/>
+    <path d="M10 26L-8 14L-12 20L10 36Z" fill="#F4A261" stroke="#1B4332" stroke-width="3"/>
+    <ellipse cx="-11" cy="16" rx="4" ry="7" transform="rotate(-30 -11 16)" fill="#E76F51" stroke="#1B4332" stroke-width="3"/>
+    <path d="M24 18C24 6 44 6 44 22" stroke="#1B4332" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- Gotitas cayendo de la regadera -->
+  <circle cx="108" cy="118" r="3.5" fill="#90E0EF"/>
+  <circle cx="98" cy="128" r="3.5" fill="#90E0EF"/>
+  <circle cx="114" cy="132" r="3.5" fill="#90E0EF"/>
+  <defs>
+    <linearGradient id="waterGrad" x1="95" y1="34" x2="95" y2="182" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+  </defs>
+</svg>

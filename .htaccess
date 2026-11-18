@@ -1,0 +1,10 @@
+# =============================================================================
+# WATHEO - Reglas de Seguridad Apache para Despliegue en Internet
+# =============================================================================
+
+Options -Indexes
+
+# Proteger archivos sensibles de configuración, claves y scripts SQL
+<FilesMatch "^(\.env|clave_dispositivo\.txt|.*\.(sql|ps1|sh|ini|ino|cpp|h))$">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,15 @@
+# Entorno y secretos
+.env
+backend/config/clave_dispositivo.txt
+
+# Compilación de Firmware / PlatformIO
+sensores/.pio/
+sensores/.vscode/
+.pio/
+
+# Archivos de sistema y editores
+.DS_Store
+Thumbs.db
+.qodo/
+.vscode/
+.idea/

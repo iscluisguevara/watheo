@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watheo | Inicio - Monitoreo Agrícola y Riego Automatizado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/inicio.css">
+</head>
+<body>
+  <!-- Barra de Navegación Global -->
+  <header class="top-navbar">
+    <div class="navbar-container">
+      <a href="./index.html" class="brand-link">
+        <img src="./assets/icons/watheo-logo.svg" alt="Logo Watheo" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title">WATHEO</span>
+          <span class="brand-subtitle">Monitoreo Agrícola &amp; Riego IoT</span>
+        </div>
+      </a>
+      <nav aria-label="Navegación Principal">
+        <ul class="nav-links">
+          <li>
+            <a href="./index.html" class="nav-item-link active">
+              <i class="ph ph-plant"></i>
+              <span>Resumen del Campo</span>
+            </a>
+          </li>
+          <li>
+            <a href="./pages/dashboard.html" class="nav-item-link">
+              <i class="ph ph-chart-line-up"></i>
+              <span>Dashboard y Riego</span>
+            </a>
+          </li>
+          <li>
+            <a href="./pages/registros.html" class="nav-item-link">
+              <i class="ph ph-table"></i>
+              <span>Tabla de Registros</span>
+            </a>
+          </li>
+          <li>
+            <a href="./pages/asistente.html" class="nav-item-link">
+              <i class="ph ph-chat-circle-dots"></i>
+              <span>Asistente Watheo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="main-container">
+    <!-- Banner Principal con Estado Visual de la Mascota -->
+    <section class="hero-banner" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="ph-fill ph-broadcast"></i>
+          <span id="home-plot-name">Cargando parcela...</span>
+        </div>
+        <h1 id="hero-heading" class="hero-title">
+          Tu cultivo de un vistazo, claro y sin complicaciones
+        </h1>
+        <p class="hero-description">
+          Watheo supervisa la humedad del suelo y las condiciones ambientales registradas por los sensores del ESP32 en SQL Server.
+        </p>
+        <div class="hero-actions">
+          <a href="./pages/dashboard.html" class="btn hero-btn-light">
+            <i class="ph-fill ph-gauge"></i>
+            <span>Abrir Panel de Sensores y Riego</span>
+          </a>
+          <a href="./pages/registros.html" class="btn hero-btn-secondary">
+            <i class="ph-fill ph-table"></i>
+            <span>Ver Tabla de Registros</span>
+          </a>
+          <a href="./pages/asistente.html" class="btn hero-btn-secondary">
+            <i class="ph-fill ph-chat-teardrop-text"></i>
+            <span>Preguntar a la Mascota</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tarjeta Dinámica de la Mascota -->
+      <aside class="hero-mascot-card" aria-label="Estado visual de la mascota">
+        <img id="home-mascot-img" src="./assets/images/mascot-happy.svg" alt="Mascota Watheo" class="hero-mascot-img">
+        <span id="home-mascot-badge" class="health-badge badge-optimal">
+          <i class="ph-fill ph-sparkle"></i>
+          <span id="home-mascot-mood-title">Analizando...</span>
+        </span>
+        <h2 class="hero-mascot-title">Diagnóstico de Watheo</h2>
+        <p id="home-mascot-speech" class="hero-mascot-speech">
+          Conectando con los sensores de la parcela...
+        </p>
+      </aside>
+    </section>
+
+    <!-- Franja de Estado Rápido: Última lectura y Relé -->
+    <section class="status-strip" aria-label="Información de telemetría">
+      <div class="status-strip-item">
+        <div class="status-strip-icon">
+          <i class="ph ph-clock-clockwise"></i>
+        </div>
+        <div>
+          <p class="status-strip-label">Fecha y Hora de Última Lectura</p>
+          <p id="home-last-reading" class="status-strip-value">--</p>
+        </div>
+      </div>
+
+      <div class="status-strip-item">
+        <div class="status-strip-icon">
+          <i class="ph ph-drop"></i>
+        </div>
+        <div>
+          <p class="status-strip-label">Estado de la bomba (no conectado)</p>
+          <p id="home-relay-status" class="status-strip-value">--</p>
+        </div>
+      </div>
+
+      <div class="status-strip-item">
+        <div class="status-strip-icon">
+          <i class="ph ph-cpu"></i>
+        </div>
+        <div>
+          <p class="status-strip-label">Nodo IoT Activo</p>
+          <p id="home-device-id" class="status-strip-value">--</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumen de Indicadores con Semáforo de Salud -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="ph-fill ph-leaf"></i>
+        <span>Salud Actual del Cultivo</span>
+      </h2>
+    </div>
+
+    <section class="summary-grid" aria-label="Métricas principales">
+      <!-- Humedad del Suelo -->
+      <article id="home-card-soil" class="card-base">
+        <div class="summary-metric-top">
+          <div class="summary-icon-box icon-soil">
+            <i class="ph-fill ph-drop-half-bottom"></i>
+          </div>
+          <span id="home-badge-soil" class="health-badge badge-optimal">Óptimo</span>
+        </div>
+        <p class="summary-metric-label">Humedad del Suelo</p>
+        <p id="home-val-soil" class="summary-metric-value">--%</p>
+        <p id="home-target-soil" class="summary-metric-target">Rango ideal: 40% - 75%</p>
+      </article>
+
+      <!-- Temperatura Ambiente -->
+      <article id="home-card-temp" class="card-base">
+        <div class="summary-metric-top">
+          <div class="summary-icon-box icon-temp">
+            <i class="ph-fill ph-thermometer-hot"></i>
+          </div>
+          <span id="home-badge-temp" class="health-badge badge-optimal">Óptimo</span>
+        </div>
+        <p class="summary-metric-label">Temperatura Ambiente</p>
+        <p id="home-val-temp" class="summary-metric-value">--°C</p>
+        <p id="home-target-temp" class="summary-metric-target">Rango ideal: 18°C - 28°C</p>
+      </article>
+
+      <!-- Humedad del Aire -->
+      <article id="home-card-air" class="card-base">
+        <div class="summary-metric-top">
+          <div class="summary-icon-box icon-air">
+            <i class="ph-fill ph-wind"></i>
+          </div>
+          <span id="home-badge-air" class="health-badge badge-optimal">Óptimo</span>
+        </div>
+        <p class="summary-metric-label">Humedad del Aire</p>
+        <p id="home-val-air" class="summary-metric-value">--%</p>
+        <p id="home-target-air" class="summary-metric-target">Rango ideal: 50% - 75%</p>
+      </article>
+
+      <!-- Clima Actual -->
+      <article class="card-base">
+        <div class="summary-metric-top">
+          <div class="summary-icon-box icon-weather">
+            <i id="home-weather-icon" class="ph-fill ph-cloud-sun"></i>
+          </div>
+          <span class="health-badge badge-optimal">Estación Local</span>
+        </div>
+        <p class="summary-metric-label">Clima Actual</p>
+        <p id="home-val-weather" class="summary-metric-value">--</p>
+        <p id="home-sub-weather" class="summary-metric-target">Pronóstico no conectado</p>
+      </article>
+    </section>
+
+    <!-- Accesos Rápidos a Módulos -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="ph-fill ph-compass"></i>
+        <span>Herramientas de Control Agrícola</span>
+      </h2>
+    </div>
+
+    <section class="modules-grid" aria-label="Herramientas del sistema">
+      <article class="card-base module-card">
+        <div class="module-card-icon">
+          <i class="ph-fill ph-chart-bar"></i>
+        </div>
+        <div class="module-card-body">
+          <h3>Dashboard y Gráficas Históricas</h3>
+          <p>
+            Consulta las gráficas de humedad y temperatura con registros de la base de datos y verifica las mediciones recibidas del nodo ESP32.
+          </p>
+          <a href="./pages/dashboard.html" class="btn btn-primary">
+            <i class="ph ph-arrow-right"></i>
+            <span>Ir al Dashboard Completo</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="card-base module-card">
+        <div class="module-card-icon">
+          <i class="ph-fill ph-table"></i>
+        </div>
+        <div class="module-card-body">
+          <h3>Bitácora y Tabla de Registros</h3>
+          <p>
+            Explora la tabla de registros almacenados en SQL Server (`dbo.registros`), filtra por estado de alerta y exporta los datos en CSV.
+          </p>
+          <a href="./pages/registros.html" class="btn btn-water">
+            <i class="ph ph-list-Bullets"></i>
+            <span>Consultar Tabla de Registros</span>
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Botón Flotante de la Mascota -->
+  <a href="./pages/asistente.html" class="floating-mascot-btn" aria-label="Abrir asistente virtual Watheo">
+    <img id="fab-mascot-img" src="./assets/images/mascot-happy.svg" alt="Watheo" class="floating-mascot-avatar">
+    <div class="floating-mascot-label">
+      <span class="floating-mascot-title">Asistente Watheo</span>
+      <span id="fab-mascot-status" class="floating-mascot-status">Consultar sensores</span>
+    </div>
+  </a>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span><strong>Watheo IoT</strong> — Sistema de Monitoreo Agrícola y Riego Automatizado</span>
+      <span class="footer-badge">Arquitectura Desacoplada (Frontend / Backend / Sensores)</span>
+    </div>
+  </footer>
+
+  <!-- Scripts externos modulares -->
+  <script src="./js/config.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/inicio.js"></script>
+</body>
+</html>
